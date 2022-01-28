@@ -8,10 +8,11 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Define path of darknet folder here.
 find_path(DARKNET_PATH
-  NAMES "README.md"
-  HINTS "${CMAKE_CURRENT_SOURCE_DIR}/../darknet/")
+NAMES "README.md"
+HINTS "${CMAKE_CURRENT_SOURCE_DIR}/../darknet/")
 message(STATUS "Darknet path dir = ${DARKNET_PATH}")
 add_definitions(-DDARKNET_FILE_PATH="${DARKNET_PATH}")
+set(Stb_DIR ${DARKNET_PATH}/3rdparty/stb CACHE PATH "Path where Stb image library can be located")
 
 # Find CUDA
 find_package(CUDA QUIET)
@@ -39,10 +40,10 @@ endif()
 message ( STATUS "Searching for X11..." )
 find_package ( X11 REQUIRED )
 if ( X11_FOUND )
-  include_directories ( ${X11_INCLUDE_DIR} )
-  link_libraries ( ${X11_LIBRARIES} )
-  message ( STATUS " X11_INCLUDE_DIR: " ${X11_INCLUDE_DIR} )
-  message ( STATUS " X11_LIBRARIES: " ${X11_LIBRARIES} )
+include_directories ( ${X11_INCLUDE_DIR} )
+link_libraries ( ${X11_LIBRARIES} )
+message ( STATUS " X11_INCLUDE_DIR: " ${X11_INCLUDE_DIR} )
+message ( STATUS " X11_LIBRARIES: " ${X11_LIBRARIES} )
 endif ( X11_FOUND )
 
 # Find rquired packeges
@@ -59,26 +60,26 @@ find_package(catkin REQUIRED
     darknet_ros_msgs
     image_transport
     nodelet
-)
-
-# Enable OPENCV in darknet
-add_definitions(-DOPENCV)
-add_definitions(-O4 -g)
-
-catkin_package(
-  INCLUDE_DIRS
-    include
-  LIBRARIES
-    ${PROJECT_NAME}_lib
-  CATKIN_DEPENDS
-    cv_bridge
-    roscpp
-    actionlib
-    rospy
-    std_msgs
-    darknet_ros_msgs
-    image_transport
-    nodelet
+    )
+    
+    # Enable OPENCV in darknet
+    add_definitions(-DOPENCV)
+    add_definitions(-O4 -g)
+    
+    catkin_package(
+      INCLUDE_DIRS
+      include
+      LIBRARIES
+      ${PROJECT_NAME}_lib
+      CATKIN_DEPENDS
+      cv_bridge
+      roscpp
+      actionlib
+      rospy
+      std_msgs
+      darknet_ros_msgs
+      image_transport
+      nodelet
   DEPENDS
     Boost
 )
@@ -89,11 +90,13 @@ include_directories(
   include
   ${Boost_INCLUDE_DIRS}
   ${catkin_INCLUDE_DIRS}
+  ${Stb_DIR}/include
 )
 
 set(PROJECT_LIB_FILES
     src/YoloObjectDetector.cpp                    src/image_interface.cpp
 )
+
 
 set(DARKNET_CORE_FILES
     ${DARKNET_PATH}/src/activation_layer.c        ${DARKNET_PATH}/src/im2col.c

@@ -55,6 +55,7 @@ extern "C"
 #include "parser.h"
 #include "region_layer.h"
 #include "utils.h"
+#include "blas.h"
 }
 
 // Image interface.

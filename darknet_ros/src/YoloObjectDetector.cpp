@@ -12,6 +12,9 @@
 // Check for xServer
 #include <X11/Xlib.h>
 
+// blas
+#include "blas.h"
+
 #ifdef DARKNET_FILE_PATH
 std::string darknetFilePath_ = DARKNET_FILE_PATH;
 #else

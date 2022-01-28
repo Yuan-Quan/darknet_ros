@@ -124,6 +124,20 @@ set(DARKNET_CORE_FILES
     ${DARKNET_PATH}/src/yolo_layer.c
     #${DARKNET_PATH}/src/iseg_layer.c
     ${DARKNET_PATH}/src/image_opencv.cpp
+    ${DARKNET_PATH}/src/conv_lstm_layer.c
+    ${DARKNET_PATH}/src/detector.c
+    ${DARKNET_PATH}/src/network.c
+    ${DARKNET_PATH}/src/sam_layer.c
+    ${DARKNET_PATH}/src/gaussian_yolo_layer.c
+    ${DARKNET_PATH}/src/http_stream.cpp
+    ${DARKNET_PATH}/src/scale_channels_layer.c
+    ${DARKNET_PATH}/src/voxel.c
+    ${DARKNET_PATH}/src/compare.c
+    ${DARKNET_PATH}/src/reorg_old_layer.c
+    ${DARKNET_PATH}/src/writing.c
+    ${DARKNET_PATH}/src/representation_layer.c
+    ${DARKNET_PATH}/src/dice.c
+    ${DARKNET_PATH}/src/rnn_vid.c
 
     ${DARKNET_PATH}/src/art.c                #${DARKNET_PATH}/src/lsd.c
     ${DARKNET_PATH}/src/nightmare.c          #${DARKNET_PATH}/src/instance-segmenter.c
@@ -142,6 +156,7 @@ set(DARKNET_CUDA_FILES
     ${DARKNET_PATH}/src/blas_kernels.cu           ${DARKNET_PATH}/src/dropout_layer_kernels.cu
     ${DARKNET_PATH}/src/col2im_kernels.cu         ${DARKNET_PATH}/src/im2col_kernels.cu
     ${DARKNET_PATH}/src/convolutional_kernels.cu  ${DARKNET_PATH}/src/maxpool_layer_kernels.cu
+    ${DARKNET_PATH}/src/network_kernels.cu
 )
 
 if (CUDA_FOUND)
